@@ -13,11 +13,13 @@ $("body").keypress(function () {
 });
 
 $(".btn").click(function () {
-  var userChosenColor = $(this).attr("id");
-  userClickedPattern.push(userChosenColor);
-  playSound(userChosenColor);
-  animatePress(userChosenColor);
-  checkAnswer(userClickedPattern.length - 1);
+  if(started){
+    var userChosenColor = $(this).attr("id");
+    userClickedPattern.push(userChosenColor);
+    playSound(userChosenColor);
+    animatePress(userChosenColor);
+    checkAnswer(userClickedPattern.length - 1);
+  }
 });
 
 function nextSequence() {
@@ -27,6 +29,7 @@ function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
+  console.log.apply(gamePattern);
   $("#" + randomChosenColour)
     .fadeOut(200)
     .fadeIn(200)
